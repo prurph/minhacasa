@@ -1,0 +1,69 @@
+#!/usr/bin/env zsh
+
+# ~~~ 🗒 Notes
+
+# \x1B[4;3m and \x1B[4;0m are used to start and stop undercurl in kitty 💅
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Add common brew completion path
+fpath+=("/opt/homebrew/share/zsh/site-functions")
+
+# ~~~ Antidote package manager, uses ~/.zsh_plugins.txt
+if [[ ! -f ~/.zsh_plugins.txt ]]; then
+  echo "\x1B[4:3;31mNo antidote plugin list at ~/.zsh_plugins.txt \x1b[4:0;0m"
+fi
+
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load
+
+autoload -U compinit; compinit
+
+# ~~~ $LS_COLORS
+if (( $+commands[vivid] && $+commands[gls] )); then
+  alias ls="gls --color"
+  export LS_COLORS="$(vivid generate catppuccin-frappe)"
+else
+  echo "\x1B[4:3;31mvivid and/or coreutils not found, \`brew install vivid coreutils\`\x1b[4:0;0m"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ~~~ History
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+setopt INC_APPEND_HISTORY     # Write to history immediately
+setopt EXTENDED_HISTORY       # Write :start:elapsed:command timestamp formula
+setopt SHARE_HISTORY          # Share history among sessions
+setopt HIST_EXPIRE_DUPS_FIRST # When trimming history, expire dups first
+setopt HIST_IGNORE_ALL_DUPS   # Replace old entries when they are duplicated
+setopt HIST_FIND_NO_DUPS      # When searching history, don't display dups
+setopt HIST_SAVE_NO_DUPS      # Don't write dups to history file
+setopt HIST_IGNORE_SPACE      # Events starting with space are not stored
+setopt HIST_REDUCE_BLANKS     # Coalese whitespace when writing history
+setopt HIST_VERIFY            # Don't execute immediately on history expansion
+
+# ~~~ Keybinds
+bindkey -r "^U" # Allow <C-u> use in fzf
+
+export PATH=$PATH:~/.local/bin
+export EDITOR=nvim
+
+# Must be done in an after init or jeffreytse/zsh-vi-mode breaks the bindings: https://github.com/jeffreytse/zsh-vi-mode/issues/24
+zvm_after_init() {
+  [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+  for script in $(find ~/Dotfiles/ -name '*.zsh'); do
+    source $script
+  done
+}
+
+# ~~~ Volta (the new nvm)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+

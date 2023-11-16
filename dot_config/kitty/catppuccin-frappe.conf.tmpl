@@ -1,0 +1,76 @@
+# vim:ft=kitty
+
+# Original: https://github.com/catppuccin/kitty/blob/main/themes/frappe.conf
+# Modified to include bright variants.
+
+# ~~~ FG/BG
+foreground              {{ .catppuccin.frappe.text }}
+background              {{ .catppuccin.frappe.base }}
+selection_foreground    {{ .catppuccin.frappe.base }}
+selection_background    {{ .catppuccin.frappe.rosewater }}
+
+# ~~~ Cursor
+cursor                  {{ .catppuccin.frappe.rosewater }}
+cursor_text_color       {{ .catppuccin.frappe.base }}
+
+# ~~~ URL (when hovering with mouse)
+url_color               {{ .catppuccin.frappe.rosewater }}
+
+# ~~~ Window border colors
+active_border_color     {{ .catppuccin.frappe.lavender }}
+inactive_border_color   {{ .catppuccin.frappe.overlay0 }}
+bell_border_color       {{ .catppuccin.frappe.yellow }}
+
+# ~~~ Terminal colors (bright variants mine, using catppuccin colors)
+
+# black
+color0 {{ .catppuccin.frappe.surface1 }}
+color8 {{ .catppuccin.frappe.surface2 }}
+
+# red
+color1 {{ .catppuccin.frappe.red }}
+color9 {{ .catppuccin.frappe.maroon }}
+
+# green
+color2  {{ .catppuccin.frappe.green }}
+color10 {{ .catppuccin.frappe.sky }}
+
+# yellow
+color3  {{ .catppuccin.frappe.yellow }}
+color11 {{ .catppuccin.frappe.peach }}
+
+# blue
+color4  {{ .catppuccin.frappe.blue }}
+color12 {{ .catppuccin.frappe.lavender }}
+
+# magenta
+color5  {{ .catppuccin.frappe.pink }}
+color13 {{ .catppuccin.frappe.mauve }}
+
+# cyan
+color6  {{ .catppuccin.frappe.teal }}
+color14 {{ .catppuccin.frappe.sapphire }}
+
+# white
+color7  {{ .catppuccin.frappe.subtext1 }}
+color15 {{ .catppuccin.frappe.subtext0 }}
+
+# ~~~ Tab bar
+active_tab_foreground   {{ .catppuccin.frappe.crust }}
+active_tab_background   {{ .catppuccin.frappe.mauve }}
+inactive_tab_foreground {{ .catppuccin.frappe.text }}
+inactive_tab_background {{ .catppuccin.frappe.mantle }}
+tab_bar_background      {{ .catppuccin.frappe.crust }}
+
+# ~~~ Marks (marked text in terminal)
+mark1_foreground {{ .catppuccin.frappe.base }}
+mark1_background {{ .catppuccin.frappe.lavender }}
+mark2_foreground {{ .catppuccin.frappe.base }}
+mark2_background {{ .catppuccin.frappe.mauve }}
+mark3_foreground {{ .catppuccin.frappe.base }}
+mark3_background {{ .catppuccin.frappe.sapphire }}
+
+# ~~~ OS window
+wayland_titlebar_color system
+macos_titlebar_color system
+
