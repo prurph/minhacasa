@@ -49,10 +49,6 @@ setopt HIST_IGNORE_SPACE      # Events starting with space are not stored
 setopt HIST_REDUCE_BLANKS     # Coalese whitespace when writing history
 setopt HIST_VERIFY            # Don't execute immediately on history expansion
 
-# ~ Keybinds
-bindkey -r "^U" # Allow <C-u> use in fzf
-bindkey '^I' fzf_completion
-
 export PATH=$PATH:~/.local/bin
 export EDITOR=nvim
 
@@ -61,6 +57,36 @@ export EDITOR=nvim
 alias cz="chezmoi"
 alias czcd="cd $(chezmoi source-path)"
 alias czed="chezmoi edit --apply"
+
+# ~ Neovim
+# ~~ Distributions must be in ~/.config/<dist_name>
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+# https://gist.github.com/elijahmanor/b279553c0132bfad7eae23e34ceb593b
+function fzf_nvim() {
+  items=("AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+
+  NVIM_APPNAME=$config nvim $@
+}
+
+# ~ Keybinds
+
+# Helpful commands:
+#   `bindkey -l`          show existing keymap names
+#   `bindkey -M <keymap>` list bindings in keymap
+#   `bindkey`             show all bindings
+bindkey -r "^U"                         # Unbind <C-u> for subsequent use in fzf
+bindkey '^I' fzf_completion
+bindkey -M viins '\e.' insert-last-word # 󰘵. to insert last word of prev cmd
+bindkey -s '\ee' "fzf_nvim\n"           # 󰘵e to fzf pick an nvim to open
 
 # Must be done in an after init or jeffreytse/zsh-vi-mode breaks the bindings: https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
