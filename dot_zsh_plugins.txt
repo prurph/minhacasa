@@ -1,0 +1,7 @@
+jeffreytse/zsh-vi-mode
+lincheney/fzf-tab-completion path:zsh
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+
+romkatv/powerlevel10k
