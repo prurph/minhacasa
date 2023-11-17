@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# ~~~ 🗒 Notes
+# ~ 🗒 Notes
 
 # \x1B[4;3m and \x1B[4;0m are used to start and stop undercurl in kitty 💅
 
@@ -14,7 +14,7 @@ fi
 # Add common brew completion path
 fpath+=("/opt/homebrew/share/zsh/site-functions")
 
-# ~~~ Antidote package manager, uses ~/.zsh_plugins.txt
+# ~ Antidote package manager, uses ~/.zsh_plugins.txt
 if [[ ! -f ~/.zsh_plugins.txt ]]; then
   echo "\x1B[4:3;31mNo antidote plugin list at ~/.zsh_plugins.txt \x1b[4:0;0m"
 fi
@@ -35,7 +35,7 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# ~~~ History
+# ~ History
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 setopt INC_APPEND_HISTORY     # Write to history immediately
@@ -56,8 +56,11 @@ bindkey '^I' fzf_completion
 export PATH=$PATH:~/.local/bin
 export EDITOR=nvim
 
-# ~~~ Aliases
-alias chezcd="cd $(chezmoi source-path)"
+# ~ Aliases
+# ~~ Chezmoi
+alias cz="chezmoi"
+alias czcd="cd $(chezmoi source-path)"
+alias czed="chezmoi edit --apply"
 
 # Must be done in an after init or jeffreytse/zsh-vi-mode breaks the bindings: https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
