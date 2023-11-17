@@ -55,6 +55,9 @@ bindkey -r "^U" # Allow <C-u> use in fzf
 export PATH=$PATH:~/.local/bin
 export EDITOR=nvim
 
+# ~~~ Aliases
+alias chezcd="cd $(chezmoi source-path)"
+
 # Must be done in an after init or jeffreytse/zsh-vi-mode breaks the bindings: https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
   [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
