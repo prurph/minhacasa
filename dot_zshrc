@@ -61,10 +61,11 @@ alias czed="chezmoi edit --apply"
 # ~ Neovim
 # ~~ Distributions must be in ~/.config/<dist_name>
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 
 # https://gist.github.com/elijahmanor/b279553c0132bfad7eae23e34ceb593b
 function fzf_nvim() {
-  items=("AstroNvim")
+  items=("AstroNvim" "LazyVim")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
 
   if [[ -z $config ]]; then
