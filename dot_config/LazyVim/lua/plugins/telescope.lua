@@ -16,8 +16,10 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "benfowler/telescope-luasnip.nvim",
+    "folke/noice.nvim",
     config = function()
       require("telescope").load_extension("luasnip")
+      require("telescope").load_extension("noice") -- Adds :Telescope noice. There is :Noice telescope by default.
     end,
     opts = {},
   },
@@ -27,9 +29,10 @@ return {
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 
     { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix [P]" },
-    { "<leader>sQ", "<cmd>Telescope quickfix<cr>", desc = "Quickfix history [P]" },
-    { "<leader>sl", "<cmd>Telescope quickfix<cr>", desc = "Search loclist [P]" },
-    { "<leader>sp", "<cmd>Telescope notifications<cr>", desc = "Notifications [P]" },
+    { "<leader>sQ", "<cmd>Telescope quickfixhistory<cr>", desc = "Quickfix history [P]" },
+    { "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Search loclist [P]" },
+
+    { "<leader>sp", "<cmd>Telescope noice<cr>", desc = "Notifications [P]" },
   },
   opts = {
     defaults = {
