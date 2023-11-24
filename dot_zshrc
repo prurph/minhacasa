@@ -49,14 +49,15 @@ setopt HIST_IGNORE_SPACE      # Events starting with space are not stored
 setopt HIST_REDUCE_BLANKS     # Coalese whitespace when writing history
 setopt HIST_VERIFY            # Don't execute immediately on history expansion
 
-export PATH=$PATH:~/.local/bin
-export EDITOR=nvim
 
 # ~ Aliases
 # ~~ Chezmoi
 alias cz="chezmoi"
 alias czcd="cd $(chezmoi source-path)"
 alias czed="chezmoi edit --apply"
+# ~~ Editor
+export EDITOR=nvim
+export NVIM_APPNAME=LazyVim
 
 # ~ Neovim
 # ~~ Distributions must be in ~/.config/<dist_name>
@@ -96,6 +97,8 @@ zvm_after_init() {
     source $script
   done
 }
+
+export PATH=$PATH:~/.local/bin
 
 # ~~~ Volta (the new nvm)
 export VOLTA_HOME="$HOME/.volta"
