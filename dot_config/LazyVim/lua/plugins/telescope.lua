@@ -46,9 +46,7 @@ end
 
 return {
   "nvim-telescope/telescope.nvim",
-  lazy = false,
   dependencies = {
-    { "benfowler/telescope-luasnip.nvim" },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
   keys = {
