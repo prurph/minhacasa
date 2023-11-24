@@ -19,10 +19,11 @@ if [[ ! -f ~/.zsh_plugins.txt ]]; then
   echo "\x1B[4:3;31mNo antidote plugin list at ~/.zsh_plugins.txt \x1b[4:0;0m"
 fi
 
+autoload -U compinit; compinit
+
 source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
-autoload -U compinit; compinit
 
 # ~~~ $LS_COLORS
 if (( $+commands[vivid] && $+commands[gls] )); then
@@ -34,6 +35,14 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ~ fzf-tab https://github.com/Aloxaf/fzf-tab/wiki/Configuration#configuration
+zstyle ':completion:*:git-checkout:*' sort false                    # Disable sort when completing `git checkout`
+zstyle ':completion:*:descriptions' format '[%d]'                   # Set descriptions format to enable group support
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}               # Set list-colors to enable filename colorizing
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'gls --color $realpath' # Preview directory's content with gls when completing cd
+zstyle ':fzf-tab:*' switch-group ',' '.'                            # Switch group using `,` and `.`
+zstyle ':fzf-tab:*' fzf-pad 4                                       # Ensure prompt is large enough with border
 
 # ~ History
 export HISTSIZE=1000000
@@ -49,6 +58,7 @@ setopt HIST_IGNORE_SPACE      # Events starting with space are not stored
 setopt HIST_REDUCE_BLANKS     # Coalese whitespace when writing history
 setopt HIST_VERIFY            # Don't execute immediately on history expansion
 
+unsetopt BEEP # 🙊
 
 # ~ Aliases
 # ~~ Chezmoi
@@ -86,7 +96,6 @@ function fzf_nvim() {
 #   `bindkey -M <keymap>` list bindings in keymap
 #   `bindkey`             show all bindings
 bindkey -r "^U"                         # Unbind <C-u> for subsequent use in fzf
-bindkey '^I' fzf_completion
 bindkey -M viins '\e.' insert-last-word # 󰘵. to insert last word of prev cmd
 bindkey -s '\ee' "fzf_nvim\n"           # 󰘵e to fzf pick an nvim to open
 
