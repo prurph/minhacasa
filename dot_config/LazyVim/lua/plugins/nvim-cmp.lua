@@ -65,10 +65,16 @@ return {
     end,
     preselect = types.cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert({
-      ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-j>"] = cmp.mapping({
+        i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        s = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      }),
+      ["<C-k>"] = cmp.mapping({
+        i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        s = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      }),
 
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -89,32 +95,11 @@ return {
           end
         end,
         s = cmp.mapping.confirm({ select = true }),
-        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
       }),
 
-      ["<Tab>"] = cmp.mapping({
-        i = smart_select_next,
-        s = smart_select_next,
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            cmp.complete()
-          end
-        end,
-      }),
-
-      ["<S-Tab>"] = cmp.mapping({
-        s = smart_select_prev,
-        i = smart_select_prev,
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            cmp.complete()
-          end
-        end,
-      }),
+      ["<Tab>"] = cmp.mapping(smart_select_next, { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(smart_select_prev, { "i", "s" }),
     }),
     window = {
       completion = cmp.config.window.bordered(),
