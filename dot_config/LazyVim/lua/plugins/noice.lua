@@ -2,6 +2,8 @@ return {
   "folke/noice.nvim",
   opts = {
     presets = {
+      -- Output cmdline results in a new window, not a popup
+      cmdline_output_to_split = true,
       long_message_to_split = true,
       lsp_doc_border = true,
     },
