@@ -1,9 +1,20 @@
 return {
   "folke/noice.nvim",
   opts = {
+    lsp = {
+      signature = {
+        enabled = true,
+        auto_open = {
+          enabled = true,
+          trigger = false, -- Use C-K to show signature help, do *not* pop up automatically
+          luasnip = true,
+          throttle = 50,
+        },
+      },
+    },
     presets = {
       -- Output cmdline results in a new window, not a popup
-      cmdline_output_to_split = true,
+      -- cmdline_output_to_split = true,
       long_message_to_split = true,
       lsp_doc_border = true,
     },
