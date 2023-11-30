@@ -1,4 +1,5 @@
 local actions = require("telescope.actions")
+local layout = require("telescope.actions.layout")
 local trouble_telescope = require("trouble.providers.telescope")
 local trouble = require("trouble")
 
@@ -125,11 +126,15 @@ return {
           ["<M-t>"] = trouble_telescope.smart_open_with_trouble,
           ["<M-q>"] = send_to_qflist,
           ["<M-c>"] = send_to_loclist,
+
+          ["<M-p>"] = layout.toggle_preview,
         },
         n = {
           ["<M-t>"] = trouble_telescope.smart_open_with_trouble,
           ["<M-q>"] = send_to_qflist,
           ["<M-c>"] = send_to_loclist,
+
+          ["<M-p>"] = layout.toggle_preview,
         },
       },
     },
