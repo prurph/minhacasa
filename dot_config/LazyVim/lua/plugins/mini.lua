@@ -23,7 +23,9 @@ local bracketed = {
     -- Keep [t for todos. Use n for "nodes"
     treesitter = suff("n"),
     undo = suff("u"),
-    window = suff("w"),
+    -- Doesn't work well with edgy.nvim, which manages regions and adds [w, but not
+    -- if something else already has
+    window = suff(""),
     yank = suff("y"),
   },
 }

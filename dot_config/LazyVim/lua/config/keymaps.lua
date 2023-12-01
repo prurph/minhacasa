@@ -9,9 +9,9 @@ local Line = require("nui.line")
 
 -- Don't line bubble in normal. In tmux, even with `escape-time 0` and a short ttimeoutlen in vim, rapidly pressing
 -- esc and then a key gets treated as [^key and therefore triggers <M-key> bindings. This will appear as lines
--- bubbling when not desired.
-vim.keymap.del({ "n" }, "<M-j>")
-vim.keymap.del({ "n" }, "<M-k>")
+-- bubbling when not desired. Might need to extend this to insert mode too.
+vim.keymap.del({ "n" }, "<A-j>")
+vim.keymap.del({ "n" }, "<A-k>")
 
 wk.register({
   ["<leader>o"] = {
