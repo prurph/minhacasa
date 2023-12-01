@@ -3,8 +3,6 @@ local layout = require("telescope.actions.layout")
 local trouble_telescope = require("trouble.providers.telescope")
 local trouble = require("trouble")
 
-local Util = require("lazyvim.util")
-
 local function lga_grep(opts)
   require("telescope").extensions.live_grep_args.live_grep_args(opts)
 end
