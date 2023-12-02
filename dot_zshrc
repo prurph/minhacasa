@@ -109,6 +109,10 @@ zvm_after_init() {
 
 export PATH=$PATH:~/.local/bin
 
+
+# Source cargo (rust) env
+. "$HOME/.cargo/env"
+
 # ~~~ Volta (the new nvm)
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
