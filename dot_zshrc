@@ -70,7 +70,9 @@ alias cz="chezmoi"
 alias czcd="cd $(chezmoi source-path)"
 alias czed="chezmoi edit --apply"
 # ~~ Editor
-export EDITOR=nvim
+
+# Keep nvim in the f_oreground until finished editing. This is important to avoid chezmoi exiting with code 134: https://www.chezmoi.io/user-guide/frequently-asked-questions/troubleshooting/#why-do-i-get-a-blank-buffer-or-empty-file-when-running-chezmoi-edit
+export EDITOR="nvim"
 export NVIM_APPNAME=LazyVim
 
 # ~ Neovim
