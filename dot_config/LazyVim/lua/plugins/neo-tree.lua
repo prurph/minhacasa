@@ -9,18 +9,20 @@ return {
   },
   opts = {
     default_component_configs = {
-      symbols = {
-        -- Change type
-        added = "✚",
-        deleted = "✖",
-        modified = "",
-        renamed = "󰁕",
-        -- Status type
-        untracked = "",
-        ignored = "",
-        unstaged = "󰄱",
-        staged = "",
-        conflict = "",
+      git_signs = {
+        symbols = {
+          -- Change type
+          added = "✚",
+          deleted = "✖",
+          modified = "",
+          renamed = "󰁕",
+          -- Status type
+          untracked = "",
+          ignored = "",
+          unstaged = "󰄱",
+          staged = "",
+          conflict = "",
+        },
       },
     },
     source_selector = {
