@@ -2,6 +2,11 @@ return {
   "folke/noice.nvim",
   opts = {
     lsp = {
+      -- If no message available on hover trigger, show nothing. Important when there are multiple
+      -- LSPs active (e.g. in a JSX file).
+      hover = {
+        silent = true,
+      },
       signature = {
         enabled = true,
         auto_open = {
