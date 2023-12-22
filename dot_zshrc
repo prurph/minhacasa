@@ -125,3 +125,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # ~~~ zoxide (supercharged cd)
 eval "$(zoxide init zsh)"
+
+# ~~~ pyenv
+eval "$(pyenv init -)"
