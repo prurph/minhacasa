@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Focus a window by direction.
+# Usage:
+#   $ focus-win.sh direction
+# Horizontal directions will move across displays before stacks.
+# Vertical directions will cycle through a stack.
+
+set -eo pipefail
+
+PATH="/opt/homebrew/bin:$HOME/bin:$PATH"
+
+function error() {
+	echo "$@" >>/dev/stderr
+}
+function fail() {
+	error "$@"
+	exit 1
+}
+function beep() {
+	osascript -e "beep"
+}
+
+function focus_win() {
+	case $1 in
+	up | north)
+		if [[ "$(yabai -m query --windows --window | jq -r '."stack-index"')" -gt "0" ]]; then
+			yabai -m window --focus stack.prev || yabai -m window --focus north || yabai -m window --focus stack.last
+		else
+			yabai -m window --focus north || beep
+		fi
+		;;
+	down | south)
+		if [[ "$(yabai -m query --windows --window | jq -r '."stack-index"')" -gt "0" ]]; then
+			yabai -m window --focus stack.next || yabai -m window --focus south || yabai -m window --focus stack.first
+		else
+			yabai -m window --focus south || beep
+		fi
+		;;
+	left | west)
+		yabai -m window --focus west || yabai -m display --focus prev || yabai -m space --focus prev || beep
+		;;
+	right | east)
+		yabai -m window --focus east || yabai -m display --focus next || yabai -m space --focus next || beep
+		;;
+	*)
+		fail "Unrecognized argument: $1"
+		;;
+	esac
+}
+
+focus_win "$1"
