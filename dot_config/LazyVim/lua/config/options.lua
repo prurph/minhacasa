@@ -3,3 +3,5 @@
 -- Add any additional options here
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
+vim.opt.conceallevel = 0 -- Prevents auto-hiding of " in json files
