@@ -25,6 +25,12 @@ fi
 
 autoload -U compinit; compinit
 
+# Configure options for zsh-vi-mode plugin before sourcing it with antidote
+# https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#configuration-function
+function zvm_config() {
+  ZVM_VI_HIGHLIGHT_BACKGROUND=red # remove default obnoxious #ff0000
+}
+
 source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
