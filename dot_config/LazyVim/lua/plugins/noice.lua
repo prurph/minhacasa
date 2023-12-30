@@ -19,7 +19,7 @@ return {
     },
     presets = {
       -- Output cmdline results in a new window, not a popup
-      -- cmdline_output_to_split = true,
+      cmdline_output_to_split = true,
       long_message_to_split = true,
       lsp_doc_border = true,
     },
@@ -34,10 +34,11 @@ return {
             { find = "; after #%d+" },
             { find = "; before #%d+" },
 
-            -- Matches some yank stuff. Lua does NOT support (more|fewer). It "pattern matches", not regexes.
+            -- Matches yank and :s/foo/bar/ stuff. Lua does NOT support (more|fewer). It "pattern matches", not regexes.
             { find = "%d+ fewer lines?" },
             { find = "%d+ more lines?" },
             { find = "%d+ lines? yanked" },
+            { find = "%d+ substitutions on %d+ lines?" },
           },
         },
         -- Shows right above statusbar. Much less intrusive than the full message popup.
