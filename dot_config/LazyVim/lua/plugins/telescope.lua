@@ -125,14 +125,21 @@ return {
           ["<M-q>"] = send_to_qflist,
           ["<M-c>"] = send_to_loclist,
 
-          ["<M-p>"] = layout.toggle_preview,
+          ["<M-v>"] = layout.toggle_preview,
         },
         n = {
+          ["<C-h>"] = actions.preview_scrolling_left,
+          ["<C-l>"] = actions.preview_scrolling_right,
+          ["<C-f>"] = actions.preview_scrolling_down,
+          ["<C-b>"] = actions.preview_scrolling_up,
+
+          ["<C-x>"] = actions.select_horizontal,
+
           ["<M-t>"] = trouble_telescope.smart_open_with_trouble,
           ["<M-q>"] = send_to_qflist,
           ["<M-c>"] = send_to_loclist,
 
-          ["<M-p>"] = layout.toggle_preview,
+          ["<M-v>"] = layout.toggle_preview,
         },
       },
     },
