@@ -43,6 +43,9 @@ function focus_win() {
 	right | east)
 		yabai -m window --focus east || yabai -m display --focus next || yabai -m space --focus next || beep
 		;;
+	prev | next | first | last | mouse)
+		yabai -m window --focus "$1"
+		;;
 	*)
 		fail "Unrecognized argument: $1"
 		;;
