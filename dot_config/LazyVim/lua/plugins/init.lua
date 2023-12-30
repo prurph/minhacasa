@@ -6,4 +6,5 @@ return {
     },
   },
   { "alexghergh/nvim-tmux-navigation" },
+  { "sbulav/nredir.nvim" },
 }
