@@ -3,6 +3,7 @@
 # ~ Scripting addition
 
 # Requires sudoers to be set up properly: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+# Need to update with the correct sha every time yabai is updated.
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -22,7 +23,7 @@ visual=(
 
 behavior=(
   auto_balance off
-  layout float
+  layout bsp
   split_ratio 0.7
 
   mouse_drop_action stack
