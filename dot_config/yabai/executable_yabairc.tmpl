@@ -50,7 +50,9 @@ if type borders >/dev/null; then
   borders active_color={{ .catppuccin.frappe.red | replace "#" "0xCC" }} \
 	  inactive_color="0x00FFFFFF" \
 	  width=6.0 \
-	  style=rounded
+    hidpi=on \
+	  style=rounded \
+    blacklist="OBS"
 fi
 
 # vim: ft=bash
